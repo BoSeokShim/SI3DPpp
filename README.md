@@ -24,3 +24,4 @@ With the rapid growth in the 3D printing content market, various unprecedented c
 
 2. pip install requirements.txt
         
+        conda install
