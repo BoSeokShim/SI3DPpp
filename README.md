@@ -33,3 +33,7 @@ With the rapid growth in the 3D printing content market, various unprecedented c
 ## Dataset
 
 ![Dataset](./figures/SI3DP++_dataset.png)
+
+## Training
+
+# Single Task
