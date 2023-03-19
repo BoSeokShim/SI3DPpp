@@ -48,22 +48,27 @@ Please move the full shot and close-up dataset folders in the SI3DP folder.
 Based on the `./data` sub-path `SI3DPpp/{train_close,train_full,train_close.csv,train_full.csv}`
 
 ------
-
-1. Printer, Filament, Quality task 
-
-        ./data/SI3DP/train_(close / full).csv
-
-2. Device task
-        
-        ./data/SI3DP/train_(close / full)_device.csv
-
-3. Reprint task
-
-        ./data/SI3DP/train_(close / full)_reprint.csv
         
 ## Training
+When using Terminal, directly execute the code below after setting the path
 
-### Single Task <Closed up setting>
+        python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type P --img-type close
+
+When using pycharm:
+
+        Menu Run 
+        -> Edit Configuration 
+        -> Check train.py in Script path
+        -> Go to parameters and enter the following
+
+        --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type P --img-type close
+
+        -> Running/debugging after check Apply button
+
+As training progresses, the best and final weights are saved in the folder `./weights/`. Learning logs are saved in the `./logs/` folder.
+
+The order of side task type and task type is P : Printer, F : Filament, Q-T : Layer thickness, Q-S : Number of shells, R : Reprint.
+### Single Task 
 - Printer task
         
         python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type P --img-type close
@@ -88,7 +93,8 @@ Based on the `./data` sub-path `SI3DPpp/{train_close,train_full,train_close.csv,
         
         python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type R --img-type close
 
-### <Multi-task task setting>
+       
+### Multi-task task setting
 - Multi-Task(Device & Printer)
         
         python train.py --enet-type CFTNet --task-type D --img-type close --side-task-type P --batch-size 32 --n-epochs 20
@@ -99,7 +105,7 @@ Based on the `./data` sub-path `SI3DPpp/{train_close,train_full,train_close.csv,
 
 -Set according to the combination of "--task-type" and "--side-task-type". 
        
- ### <(Multi or Single) Modal-Task  Setting>
+### (Multi or Single) Modal-Task  Setting
 - Single-Modal-Task(Device)
         
         python train.py --enet-type CFTNet --task-type D --img-type both --batch-size 32 --n-epochs 20
@@ -112,7 +118,7 @@ Based on the `./data` sub-path `SI3DPpp/{train_close,train_full,train_close.csv,
         
         python train.py --enet-type CFTNet --task-type D --img-type both --side-task-type P --batch-size 32 --epoch 20 --use-meta
 
-### <Semi-Controlled Setting>
+### Semi-Controlled Setting
 - Multi-Modal-Task(Printer & Number of shells)
         
         python train.py --enet-type CFTNet --task-type P --img-type both --side-task-type Q-S --batch-size 32 --epoch 20 --semi
@@ -121,7 +127,7 @@ Based on the `./data` sub-path `SI3DPpp/{train_close,train_full,train_close.csv,
         
         python train.py --enet-type CFTNet --task-type D --img-type both --side-task-type Q-T --batch-size 32 --epoch 20 --semi
 
-### <Post-Processing Setting>
+### Post-Processing Setting
 - Sanding-Processing-Task
         
         python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type P --img-type close --sanding-processing
@@ -130,7 +136,7 @@ Based on the `./data` sub-path `SI3DPpp/{train_close,train_full,train_close.csv,
         
         python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type P --img-type close --coating-processing
 
-### <Fullshot Setting (Baseline only)>
+### Fullshot Setting (Baseline only)
 - Printer/Filament/Layer thickness/Number of shells/Device/Reprint task
         
         python train.py --enet-type tf_efficientnet_b3_ns --n-epochs 20 --batch-size 32 --task-type P/F/Q-T/Q-S/D/R --img-type full --baseline
@@ -141,12 +147,12 @@ The learned model is subjected to k-fold cross validation. You can use the model
 
 The evaluation results are saved in ./logs/.
         
-### Single Task <Closed up setting>
+### Single Task
 - Printer/Filament/Layer thickness/Number of shells/Device/Reprint task
         
         python evaluate.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type P/F/Q-T/Q-S/D/R --img-type close
 
-### <Multi-task task setting>
+### Multi-task task setting
 - Multi-Task(Device & Printer)
         
         python evaluate.py --enet-type CFTNet --task-type D --img-type close --side-task-type P --batch-size 32 --n-epochs 20
@@ -157,7 +163,7 @@ The evaluation results are saved in ./logs/.
 
 -Set according to the combination of "--task-type" and "--side-task-type". 
        
- ### <(Multi or Single) Modal-Task  Setting>
+ ### (Multi or Single) Modal-Task  Setting
 - Single-Modal-Task(Device)
         
         python evaluate.py --enet-type CFTNet --task-type D --img-type both --batch-size 32 --n-epochs 20
@@ -170,7 +176,7 @@ The evaluation results are saved in ./logs/.
         
         python evaluate.py --enet-type CFTNet --task-type D --img-type both --side-task-type P --batch-size 32 --epoch 20 --use-meta
 
-### <Semi-Controlled Setting>
+### Semi-Controlled Setting
 - Multi-Modal-Task(Printer & Number of shells)
         
         python evaluate.py --enet-type CFTNet --task-type P --img-type both --side-task-type Q-S --batch-size 32 --epoch 20 --semi
@@ -179,7 +185,7 @@ The evaluation results are saved in ./logs/.
         
         python evaluate.py --enet-type CFTNet --task-type D --img-type both --side-task-type Q-T --batch-size 32 --epoch 20 --semi
 
-### <Post-Processing Setting>
+### Post-Processing Setting
 - Sanding-Processing-Task
         
         python evaluate.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type P --img-type close --sanding-processing
@@ -188,7 +194,7 @@ The evaluation results are saved in ./logs/.
         
         python evaluate.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type P --img-type close --coating-processing
 
-### <Fullshot Setting (Baseline only)>
+### Fullshot Setting (Baseline only)
 - Printer/Filament/Layer thickness/Number of shells/Device/Reprint task
         
         python evaluate.py --enet-type tf_efficientnet_b3_ns --n-epochs 20 --batch-size 32 --task-type P/F/Q-T/Q-S/D/R --img-type full --baseline
