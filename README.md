@@ -22,6 +22,14 @@ With the rapid growth in the 3D printing content market, various unprecedented c
 
 1. Nvidia driver, CUDA toolkit 11.0, install Anaconda.
 
-2. pip install requirements.txt
+2. Install pytorch 
         
-        conda install
+        conda install pytorch torchvision cudatoolkit=11.0 -c pytorch
+
+3. Install various necessary packages in requirements.txt
+
+        pip install -r requirements.txt
+
+## Dataset
+
+![Dataset](./assets/motivation.PNG)
