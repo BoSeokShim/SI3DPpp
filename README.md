@@ -65,34 +65,37 @@ Based on the `./data` sub-path `SI3DPpp/{train_close,train_full,train_close.csv,
 
 ### Single Task <Closed up setting>
 - Printer task
+        
         python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type P --img-type close
         
 - Filament task
+        
         python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type F --img-type close
         
 - Layer thickness task
+        
         python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type Q-T --img-type close
         
 - Number of shells task
+        
         python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type Q-S --img-type close
         
 - Device task 
+        
         python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type D --img-type close
 
 - Reprint task
+        
         python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type R --img-type close
 
- ### Multi-task task setting
-- Printer task
-        python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type P --img-type close
-- Filament task
-        python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type F --img-type close
-- Layer thickness task
-        python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type Q-T --img-type close
-- Number of shells task
-        python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type Q-S --img-type close
-- Device task 
-        python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type D --img-type close
-- Reprint task
-        python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type R --img-type close
-     
+### Multi-task task setting
+- Multi-Task(Device & Printer)
+        
+        python train.py --enet-type CFTNet --task-type D --img-type close --side-task-type P --batch-size 32 --n-epochs 20
+
+- Multi-Task(Device & Layer thickness)
+        
+                python train.py --enet-type CFTNet --task-type D --img-type close --side-task-type Q-T --batch-size 32 --n-epochs 20
+
+-Set according to the combination of "--task-type" and "--side-task-type". 
+
