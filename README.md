@@ -88,7 +88,7 @@ Based on the `./data` sub-path `SI3DPpp/{train_close,train_full,train_close.csv,
         
         python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type R --img-type close
 
-### Multi-task task setting
+### <Multi-task task setting>
 - Multi-Task(Device & Printer)
         
         python train.py --enet-type CFTNet --task-type D --img-type close --side-task-type P --batch-size 32 --n-epochs 20
@@ -98,4 +98,40 @@ Based on the `./data` sub-path `SI3DPpp/{train_close,train_full,train_close.csv,
                 python train.py --enet-type CFTNet --task-type D --img-type close --side-task-type Q-T --batch-size 32 --n-epochs 20
 
 -Set according to the combination of "--task-type" and "--side-task-type". 
+       
+ ### <(Multi or Single) Modal-Task  Setting>
+- Single-Modal-Task(Device)
+        
+        python train.py --enet-type CFTNet --task-type D --img-type both --batch-size 32 --n-epochs 20
+        
+- Multi-Modal-Task(Device & Printer)
+        
+        python train.py --enet-type CFTNet --task-type D --img-type both --side-task-type P --batch-size 32 --epoch 20
+        
+- Multi-Modal-Task(Device & Printer & Inspection data)
+        
+        python train.py --enet-type CFTNet --task-type D --img-type both --side-task-type P --batch-size 32 --epoch 20 --use-meta
+
+### <Semi-Controlled Setting>
+- Multi-Modal-Task(Printer & Number of shells)
+        
+        python train.py --enet-type CFTNet --task-type P --img-type both --side-task-type Q-S --batch-size 32 --epoch 20 --semi
+
+- Multi-Modal-Task(Device & Layer thickness)
+        
+        python train.py --enet-type CFTNet --task-type D --img-type both --side-task-type Q-T --batch-size 32 --epoch 20 --semi
+
+### <Post-Processing Setting>
+- Sanding-Processing-Task
+        
+        python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type P --img-type close --sanding-processing
+        
+- Coating-Processing-Task
+        
+        python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type P --img-type close --coating-processing
+### <Fullshot Setting (Baseline only)>
+- Printer/Filament/Layer thickness/Number of shells/Device/Reprint task
+        
+        python train.py --enet-type tf_efficientnet_b3_ns --n-epochs 20 --batch-size 32 --task-type P/F/Q-T/Q-S/D/R --img-type full --baseline
+
 
