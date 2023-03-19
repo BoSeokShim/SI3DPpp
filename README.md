@@ -7,7 +7,7 @@ Dataset will be available after publication.
 Please refer our previous work [SI3DP](https://github.com/juhou/SI3DP)
 
 
-![SI3DP](https://github.com/juhou/SI3DPpp/blob/main/figure_overall.PNG)
+![SI3DP](./figures/fifigure_overall.PNG)
 
 
 ### Abstract
@@ -32,4 +32,4 @@ With the rapid growth in the 3D printing content market, various unprecedented c
 
 ## Dataset
 
-![Dataset](./assets/motivation.PNG)
+![Dataset](./figures/SI3DP++_dataset.png)
