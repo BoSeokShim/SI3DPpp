@@ -95,7 +95,7 @@ Based on the `./data` sub-path `SI3DPpp/{train_close,train_full,train_close.csv,
 
 - Multi-Task(Device & Layer thickness)
         
-                python train.py --enet-type CFTNet --task-type D --img-type close --side-task-type Q-T --batch-size 32 --n-epochs 20
+        python train.py --enet-type CFTNet --task-type D --img-type close --side-task-type Q-T --batch-size 32 --n-epochs 20
 
 -Set according to the combination of "--task-type" and "--side-task-type". 
        
@@ -129,6 +129,7 @@ Based on the `./data` sub-path `SI3DPpp/{train_close,train_full,train_close.csv,
 - Coating-Processing-Task
         
         python train.py --enet-type CFTNet --n-epochs 20 --batch-size 32 --task-type P --img-type close --coating-processing
+
 ### <Fullshot Setting (Baseline only)>
 - Printer/Filament/Layer thickness/Number of shells/Device/Reprint task
         
